@@ -1,17 +1,21 @@
-export function renderRegisterForm(onRegister) {
-    const form = document.createElement('form');
-    form.className = 'register-form neon-card';
-    form.innerHTML = `
-        <h2 class="game-title">Register to Play</h2>
-        <input type="text" name="username" class="neon-input" placeholder="Enter your name" required />
-        <button>Register</button>
-    `;
-    form.addEventListener('submit', (e) => {
+import { useState } from 'react';
+
+export function RegisterForm({ onRegister }) {
+    const [username, setUsername] = useState('');
+    const [error,setError] = useState('');
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const username = form.username.value.trim();
-        if (username) {
-            onRegister(username);
+        if (username.trim()) {
+            onRegister(username.trim());
+            setUsername('');
+        } else {
+            setError('Please enter a valid username');
         }
-    });
-    return form;
+    };
+    
+    return (
+        <>
+        </>
+    );
 }
